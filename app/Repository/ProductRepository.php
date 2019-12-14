@@ -3,40 +3,56 @@
 namespace App\Repository;
 
 use App\Models\Products;
+use App\Services\ImageServicesInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    private $imageServices;
 
+    public function __construct(ImageServicesInterface $imageServices)
+    {
+        $this->imageServices = $imageServices;
+    }
     public function addProduct(Request $request)
     {
         $product = new Products();
-        $path = "upload/product_image";
+        $path = "/product_images/";
         //main_picture
-        if ($request->hasFile('main_picture')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $image = Str::random(4) . "_" . $filename;
-            while (file_exists($path . $image)) {
-                $image = Str::random(4) . "_" . $filename;
-            }
-            $file->move($path, $image);
-            if (!empty($product->image)) {
-                unlink($path . "/" . $product->image);
-            }
-            $product->image = $image;
+        if ($request->hasFile('image')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('image')->getClientOriginalName();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $request->file('image')->getClientOriginalExtension();
 
-        } else {
+            $smallthumbnail = $filename.'_small_'.time().'.'.$extension;
+            //Upload File
+            $request->file('image')->storeAs('public/product_images/', $smallthumbnail);
+            //create small thumbnail
+            $smallthumbnailpath = public_path('storage/product_images/'.$smallthumbnail);
+            $this->imageServices->createThumbnail($smallthumbnailpath, 250, 300);
+
+            if (!empty($product->image)) {
+                unlink(public_path('storage' . $product->image));
+            }
+            $product->image = $path.$smallthumbnail;
+        }else {
             $product->image = "";
         }
 
-
-
         $product->name = $request->name;
         $product->category_id = $request->category_id;
+        $product->artist_id = $request->artist_id;
         $product->description = $request->description;
+        $product->short_description = $request->short_description;
+        $product->start_time = $request->start_time;
+        $product->end_time = $request->end_time;
+        $product->release_year = $request->release_year;
         $product->price = $request->price;
         $product->save();
     }
@@ -44,25 +60,37 @@ class ProductRepository implements ProductRepositoryInterface
     public function updateProduct(Request $request, $id)
     {
         // TODO: Implement updateProduct() method.
+        $path = "/product_images/";
         $product = Products::find($id);
-        $path = "upload/product_image";
         //main_picture
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $image = Str::random(4) . "_" . $filename;
-            while (file_exists($path . $image)) {
-                $image = Str::random(4) . "_" . $filename;
-            }
-            $file->move($path, $image);
+            //get filename with extension
+            $filenamewithextension = $request->file('image')->getClientOriginalName();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            $smallthumbnail = $filename.'_small_'.time().'.'.$extension;
+            //Upload File
+            $request->file('image')->storeAs('public/product_images/', $smallthumbnail);
+            //create small thumbnail
+            $smallthumbnailpath = public_path('storage/product_images/'.$smallthumbnail);
+            $this->imageServices->createThumbnail($smallthumbnailpath, 250, 300);
+
             if (!empty($product->image)) {
-                unlink($path . "/" . $product->image);
+                unlink(public_path('storage' . $product->image));
             }
-            $product->image = $image;
+            $product->image = $path.$smallthumbnail;
         }
         $product->name = $request->name;
         $product->category_id = $request->category_id;
+        $product->artist_id = $request->artist_id;
         $product->description = $request->description;
+        $product->short_description = $request->short_description;
+        $product->start_time = $request->start_time;
+        $product->end_time = $request->end_time;
+        $product->release_year = $request->release_year;
         $product->price = $request->price;
         $product->save();
     }

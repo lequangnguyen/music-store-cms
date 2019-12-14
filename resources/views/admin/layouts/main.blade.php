@@ -60,6 +60,9 @@
 <script src="{{ asset('layouts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <!-- Slimscroll -->
 <script src="{{ asset('layouts/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('layouts/bower_components/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('layouts/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+
 <!-- FastClick -->
 <script src="{{ asset('layouts/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
@@ -78,6 +81,15 @@
             'autoWidth'   : false,
             'info':false
         })
+    });
+    $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1')
+    });
+    //Date picker
+    $('#datepicker').datepicker({
+        autoclose: true
     })
 </script>
 </body>

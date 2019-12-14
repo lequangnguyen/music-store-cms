@@ -3,9 +3,8 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <h1 class="box-title" style="font-size: 20px">Products Table</h1>
-                <div><a href="{{ route('Admin::product@add') }}" style="color: #cc0000;float: right;font-size: 16px">Add
-                        a new product</a></div>
+                <h1 class="box-title" style="font-size: 20px">Artists Table</h1>
+                <div ><a href="{{ route('Admin::artist@add') }}" style="color: #cc0000;float: right;font-size: 16px">Add a new artist</a></div>
 
             </div>
             <!-- /.box-header -->
@@ -22,30 +21,19 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Category</th>
-                        <th>Price</th>
                         <th>Image</th>
                         <th>Edit</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($products as $product)
+                    @foreach($artists as $artist)
                         <tr>
-                            <td>{{$product->id}}</td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->description}}</td>
-                            <td>
-                                @foreach($categories as $category)
-                                    @if($category->id==$product->category_id)
-                                        {{$category->name}}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td>{{$product->price}}</td>
-                            {{--<td>{{$product->main_picture}}</td>--}}
-                            <td><img width="100px" src="/storage{{$product->image}}"/></td>
+                            <td>{{$artist->id}}</td>
+                            <td>{{$artist->name}}</td>
+                            <td>{{$artist->description}}</td>
+                            <td><img width="100px" src="/storage{{$artist->image}}"/></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i><a
-                                        href="{{ route('Admin::product@edit',[$product->id]) }}">Edit</a></td>
+                                        href="{{ route('Admin::artist@edit',[$artist->id]) }}">Edit</a></td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -54,14 +42,12 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Category</th>
-                        <th>Price</th>
                         <th>Image</th>
                         <th>Edit</th>
                     </tr>
                     </tfoot>
                 </table>
-                {{ $products->links() }}
+                {{ $artists->links() }}
             </div>
             <!-- /.box-body -->
         </div>

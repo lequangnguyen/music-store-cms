@@ -43,6 +43,17 @@ Route::group(['namespace' => 'Admin',
         Route::post('edit/{id}', ['as'=>'update','uses'=>'CategoryController@update']);
 
     });
+
+    Route::group(['prefix' => 'artist','as'=>'artist@'], function () {
+        Route::get('/',['as'=>'index','uses'=>'ArtistController@index'] );
+        Route::get('add',['as'=>'add','uses'=> 'ArtistController@getAdd']);
+        Route::post('store',['as'=>'store','uses'=> 'ArtistController@store'] );
+        Route::get('edit/{id}',['as'=>'edit','uses'=>'ArtistController@getEdit'] );
+        Route::get('delete/{id}', ['as'=>'delete','uses'=>'ArtistController@getDelete']);
+        Route::post('edit/{id}', ['as'=>'update','uses'=>'ArtistController@update']);
+
+    });
+
     Route::group(['prefix' => 'product','as'=>'product@'], function () {
         Route::get('/',['as'=>'index','uses'=>'ProductController@index'] );
         Route::get('add',['as'=>'add','uses'=> 'ProductController@getAdd']);

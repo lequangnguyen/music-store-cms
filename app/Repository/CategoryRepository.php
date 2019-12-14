@@ -15,23 +15,32 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         // TODO: Implement addCategory() method.
         $category = new Categories();
-        $path = "upload/category_image";
-        $category->name = $request->name;
-        $category->description = $request->description;
-        //image
+        $path = "/category_images/";
+        //main_picture
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $image = Str::random(4) . "_" . $filename;
-            while (file_exists($path . $image)) {
-                $image = Str::random(4) . "_" . $filename;
-            }
-            $file->move($path, $image);
-            $category->image = $image;
+            //get filename with extension
+            $filenamewithextension = $request->file('image')->getClientOriginalName();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $request->file('image')->getClientOriginalExtension();
 
-        } else {
+            $smallthumbnail = $filename.'_small_'.time().'.'.$extension;
+            //Upload File
+            $request->file('image')->storeAs('public/category_images/', $smallthumbnail);
+            //create small thumbnail
+            $smallthumbnailpath = public_path('storage/category_images/'.$smallthumbnail);
+            $this->createThumbnail($smallthumbnailpath, 250, 300);
+
+            if (!empty($category->image)) {
+                unlink(public_path('storage' . $category->image));
+            }
+            $category->image = $path.$smallthumbnail;
+        }else {
             $category->image = "";
         }
+        $category->name = $request->name;
+        $category->description = $request->description;
         $category->save();
     }
 
@@ -39,23 +48,30 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         // TODO: Implement updateCategory() method.
         $category = Categories::find($id);
-        $path = "upload/category_image";
+        $path = "/category_images/";
+        //main_picture
+        if ($request->hasFile('image')) {
+            //get filename with extension
+            $filenamewithextension = $request->file('image')->getClientOriginalName();
+            //get filename without extension
+            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+            //get file extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            $smallthumbnail = $filename.'_small_'.time().'.'.$extension;
+            //Upload File
+            $request->file('image')->storeAs('public/category_images/', $smallthumbnail);
+            //create small thumbnail
+            $smallthumbnailpath = public_path('storage/category_images/'.$smallthumbnail);
+            $this->createThumbnail($smallthumbnailpath, 250, 300);
+
+            if (!empty($category->image)) {
+                unlink(public_path('storage' . $category->image));
+            }
+            $category->image = $path.$smallthumbnail;
+        }
         $category->name = $request->name;
         $category->description = $request->description;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $image = Str::random(4) . "_" . $filename;
-            while (file_exists($path . $image)) {
-                $image = Str::random(4) . "_" . $filename;
-            }
-            $file->move($path, $image);
-            if (!empty($category->image)) {
-                unlink($path . "/" . $category->image);
-            }
-            $category->image = $image;
-
-        }
         $category->save();
     }
 
