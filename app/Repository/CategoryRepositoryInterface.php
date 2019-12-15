@@ -14,6 +14,7 @@ interface CategoryRepositoryInterface
     public function deleteCategory($id);
 
     public function getListCategory();
+    public function getListParentCategory();
 
     public function getEditCategory($id);
 

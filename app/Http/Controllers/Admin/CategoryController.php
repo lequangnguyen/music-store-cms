@@ -22,12 +22,20 @@ class CategoryController extends Controller
 
     public function getAdd()
     {
-        return view('admin.category.form');
+
+        return view('admin.category.form',
+            [
+                'pr_categories' => $this->categoryRepository->getListParentCategory(),
+            ]);
     }
 
     public function getEdit($id)
     {
-        return view("admin.category.form", ['category' => $this->categoryRepository->getEditCategory($id)]);
+        return view("admin.category.form",
+            [
+                'category' => $this->categoryRepository->getEditCategory($id),
+                'pr_categories' => $this->categoryRepository->getListParentCategory(),
+            ]);
     }
 
     public function store(Request $request)

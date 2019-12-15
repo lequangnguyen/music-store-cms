@@ -32,7 +32,7 @@
                             <td>{{$category->id}}</td>
                             <td>{{$category->name}}</td>
                             <td>{{$category->description}}</td>
-                            <td><img width="100px" src="../upload/category_image/{{$category->image}}"/></td>
+                            <td><img width="100px" src="/storage{{$category->image}}"/></td>
                             <td class="center"><i class="fa fa-pencil fa-fw"></i><a
                                         href="{{ route('Admin::category@edit',[$category->id]) }}">Edit</a></td>
                             <td class="center"><i class="fa fa-trash-o fa-fw"></i><a

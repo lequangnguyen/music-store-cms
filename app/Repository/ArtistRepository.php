@@ -6,7 +6,6 @@ use App\Models\Artists;
 use App\Services\ImageServicesInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class ArtistRepository implements ArtistRepositoryInterface
 {

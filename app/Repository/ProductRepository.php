@@ -6,8 +6,6 @@ use App\Models\Products;
 use App\Services\ImageServicesInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 
 class ProductRepository implements ProductRepositoryInterface
 {

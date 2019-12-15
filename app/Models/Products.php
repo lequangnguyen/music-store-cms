@@ -9,7 +9,7 @@ class Products extends Model
 {
     protected $fillable = [
     ];
-    public $timestamps = false;
+    public $timestamps = true;
     public function category()
     {
         $this->belongTo(Categories::class);
