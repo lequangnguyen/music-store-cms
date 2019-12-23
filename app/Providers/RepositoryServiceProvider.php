@@ -39,5 +39,9 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repository\ArtistRepositoryInterface::class,
             \App\Repository\ArtistRepository::class
         );
+        $this->app-> singleton(
+            \App\Repository\OrderRepositoryInterface::class,
+            \App\Repository\OrderRepository::class
+        );
     }
 }
