@@ -35,7 +35,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             $request->file('image')->storeAs('public/category_images/', $smallthumbnail);
             //create small thumbnail
             $smallthumbnailpath = public_path('storage/category_images/'.$smallthumbnail);
-            $this->imageServices->createThumbnail($smallthumbnailpath, 250, 300);
+            $this->imageServices->createThumbnail($smallthumbnailpath, 1920, 300);
 
             if (!empty($category->image)) {
                 unlink(public_path('storage' . $category->image));
@@ -69,7 +69,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             $request->file('image')->storeAs('public/category_images/', $smallthumbnail);
             //create small thumbnail
             $smallthumbnailpath = public_path('storage/category_images/'.$smallthumbnail);
-            $this->imageServices ->createThumbnail($smallthumbnailpath, 250, 300);
+            $this->imageServices ->createThumbnail($smallthumbnailpath, 1920, 300);
 
             if (!empty($category->image)) {
                 unlink(public_path('storage' . $category->image));

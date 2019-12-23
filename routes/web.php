@@ -62,4 +62,12 @@ Route::group(['namespace' => 'Admin',
         Route::get('delete/{id}', ['as'=>'delete','uses'=>'ProductController@getDelete']);
         Route::post('edit/{id}', ['as'=>'update','uses'=>'ProductController@update']);
     });
+
+    Route::group(['prefix' => 'order','as'=>'order@'], function () {
+        Route::get('/',['as'=>'index','uses'=>'OrderController@index'] );
+        Route::get('/detail/{id}',['as'=>'detail','uses'=>'OrderController@detail'] );
+        Route::get('edit/{id}',['as'=>'edit','uses'=>'OrderController@getEdit'] );
+        Route::post('edit/{id}', ['as'=>'update','uses'=>'OrderController@update']);
+        Route::post('changeStatus', ['as'=>'changeStatus','uses'=>'OrderController@changeStatus']);
+    });
 });
