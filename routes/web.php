@@ -11,18 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('admin/login', 'Admin\AuthController@getLoginAdmin');
-Route::get('admin/logout', 'Admin\AuthController@getLogoutAdmin')->name('logout');
-Route::post('admin/login', 'Admin\AuthController@postLoginAdmin');
+Route::get('/login', 'Admin\AuthController@getLoginAdmin');
+Route::get('/logout', 'Admin\AuthController@getLogoutAdmin')->name('logout');
+Route::post('/login', 'Admin\AuthController@postLoginAdmin');
 Route::group(['namespace' => 'Admin',
-    'prefix' => 'admin',
+//    'prefix' => 'admin',
     'as'=>'Admin::',
     'middleware' => 'adminLogin'], function () {
-    Route::group(['prefix' => 'dashboard','as'=>'dashboard@'], function () {
+    Route::group(['as'=>'dashboard@'], function () {
         Route::get('/',['as'=>'index','uses'=>'DashboardController@index']);
     });
     Route::group(['prefix' => 'user','as'=>'user@'], function () {
@@ -69,5 +69,10 @@ Route::group(['namespace' => 'Admin',
         Route::get('edit/{id}',['as'=>'edit','uses'=>'OrderController@getEdit'] );
         Route::post('edit/{id}', ['as'=>'update','uses'=>'OrderController@update']);
         Route::post('changeStatus', ['as'=>'changeStatus','uses'=>'OrderController@changeStatus']);
+    });
+
+    Route::group(['prefix' => 'statistic','as'=>'statistic@'], function () {
+        Route::get('/',['as'=>'index','uses'=>'StatisticController@index'] );
+        Route::post('/getStatistic',['as'=>'getStatistic','uses'=>'StatisticController@getStatistic'] );
     });
 });

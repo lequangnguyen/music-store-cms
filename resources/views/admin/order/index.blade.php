@@ -12,65 +12,65 @@
             <div class="box-header">
                 <h1 class="box-title" style="font-size: 20px">Orders Table</h1>
             </div>
-{{--            <form action="{{route('Admin::order@index')}}" method="get">--}}
-{{--            <div class="form-group m-form__group row align-items-center">--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="m-form__group">--}}
-{{--                        <div class="m-form__label">--}}
-{{--                            <label>--}}
-{{--                                Mã đơn hàng:--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <div class="m-form__control">--}}
-{{--                            <input type="text" class="form-control m-input" name="name"--}}
-{{--                                   value="{{ Request::input('name') }}"--}}
-{{--                                   data-col-index="0">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="m-form__group">--}}
-{{--                        <div class="m-form__label">--}}
-{{--                            <label>--}}
-{{--                                Ngày đặt hàng:--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <div class="m-form__control">--}}
-{{--                            <input type="text" class="form-control m-input" name="address"--}}
-{{--                                   value="{{ Request::input('address') }}"--}}
-{{--                                   data-col-index="0">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="m-form__group">--}}
-{{--                        <div class="m-form__label">--}}
-{{--                            <label>--}}
-{{--                                Trạng thái:--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <div class="m-form__control">--}}
-{{--                            <input type="text" class="form-control m-input" name="code"--}}
-{{--                                   value="{{ Request::input('code') }}">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-3">--}}
-{{--                    <div class="m-form__group">--}}
-{{--                        <div class="m-form__label">--}}
-{{--                            <label>--}}
-{{--                                Khách hàng:--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                        <div class="m-form__control">--}}
-{{--                            <input type="text" class="form-control m-input"--}}
-{{--                                   name="phone_number"--}}
-{{--                                   value="{{ Request::input('phone_number') }}">--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            </form>--}}
+            <form action="{{route('Admin::order@index')}}" method="get">
+            <div class="form-group m-form__group row align-items-center">
+                <div class="col-md-3">
+                    <div class="m-form__group">
+                        <div class="m-form__label">
+                            <label>
+                                Mã đơn hàng:
+                            </label>
+                        </div>
+                        <div class="m-form__control">
+                            <input type="text" class="form-control m-input" name="name"
+                                   value="{{ Request::input('name') }}"
+                                   data-col-index="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="m-form__group">
+                        <div class="m-form__label">
+                            <label>
+                                Ngày đặt hàng:
+                            </label>
+                        </div>
+                        <div class="m-form__control">
+                            <input type="text" class="form-control m-input" name="address"
+                                   value="{{ Request::input('address') }}"
+                                   data-col-index="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="m-form__group">
+                        <div class="m-form__label">
+                            <label>
+                                Trạng thái:
+                            </label>
+                        </div>
+                        <div class="m-form__control">
+                            <input type="text" class="form-control m-input" name="code"
+                                   value="{{ Request::input('code') }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="m-form__group">
+                        <div class="m-form__label">
+                            <label>
+                                Khách hàng:
+                            </label>
+                        </div>
+                        <div class="m-form__control">
+                            <input type="text" class="form-control m-input"
+                                   name="phone_number"
+                                   value="{{ Request::input('phone_number') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
             <!-- /.box-header -->
             <div class="box-body">
                 @if(session('Notice'))
