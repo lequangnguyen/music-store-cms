@@ -73,6 +73,6 @@ Route::group(['namespace' => 'Admin',
 
     Route::group(['prefix' => 'statistic','as'=>'statistic@'], function () {
         Route::get('/',['as'=>'index','uses'=>'StatisticController@index'] );
-        Route::post('/getStatistic',['as'=>'getStatistic','uses'=>'StatisticController@getStatistic'] );
+        Route::get('/getStatistic',['as'=>'getStatistic','uses'=>'StatisticController@getStatistic'] );
     });
 });
