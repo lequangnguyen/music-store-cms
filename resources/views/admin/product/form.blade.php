@@ -75,13 +75,21 @@
             <div class="form-group">
                 <label>Start Time</label>
                 <input type="datetime-local" class="form-control" name="start_time"
-                       value="{{ old('start_time') ?: @date('Y-m-d\TH:i', strtotime($product['start_time'])) }}"
+                       @if(isset($product['start_time']))
+                       value="{{@date('Y-m-d\TH:i', strtotime($product['start_time']))}}"
+                       @else
+                       value="{{ old('start_time') ?: '' }}"
+                       @endif
                        placeholder="Start Time">
             </div>
             <div class="form-group">
                 <label>End Time</label>
                 <input type="datetime-local" class="form-control" name="end_time"
-                       value="{{ old('end_time') ?: @date('Y-m-d\TH:i', strtotime($product['end_time'])) }}"
+                       @if(isset($product['end_time']))
+                       value="{{@date('Y-m-d\TH:i', strtotime($product['end_time']))}}"
+                       @else
+                       value="{{ old('end_time') ?: '' }}"
+                       @endif
                        placeholder="End Time">
             </div>
             <div class="form-group">

@@ -86,8 +86,8 @@ class ProductRepository implements ProductRepositoryInterface
         $product->artist_id = $request->artist_id;
         $product->description = $request->description;
         $product->short_description = $request->short_description;
-        $product->start_time = $request->start_time ? null : $request->start_time;
-        $product->end_time = $request->end_time ? null : $request->end_time;
+        $product->start_time = $request->start_time ? $request->start_time : null;
+        $product->end_time = $request->end_time ? $request->end_time : null;
         $product->release_year = $request->release_year;
         $product->price = $request->price;
         $product->save();
