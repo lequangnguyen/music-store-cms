@@ -79,6 +79,7 @@ class ProductController extends Controller
                 'category_id.required' => 'Please choose name category',
 
             ]);
+//        dd($request->all());
         $this->productRepository->updateProduct($request, $id);
         return redirect()->route('Admin::product@index')->with('Notice', 'Successfully Updated');
     }

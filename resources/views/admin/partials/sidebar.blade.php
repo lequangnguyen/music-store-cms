@@ -7,6 +7,8 @@
             <li><a href="{{ route('Admin::category@index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
             <li><a href="{{ route('Admin::artist@index') }}"><i class="fa fa-circle-o"></i>Artists</a></li>
             <li><a href="{{ route('Admin::product@index') }}"><i class="fa fa-circle-o"></i>Products</a></li>
+            <li><a href="{{ route('Admin::order@index') }}"><i class="fa fa-circle-o"></i>Orders</a></li>
+            <li><a href="{{ route('Admin::statistic@index') }}"><i class="fa fa-circle-o"></i>Statistics</a></li>
         </ul>
     </section>
     <!-- /.sidebar -->

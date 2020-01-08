@@ -20,6 +20,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('layouts/dist/css/skins/_all-skins.min.css') }}">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ asset('layouts/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -56,8 +58,8 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('layouts/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- DataTables -->
-<script src="{{ asset('layouts/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('layouts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+{{--<script src="{{ asset('layouts/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>--}}
+{{--<script src="{{ asset('layouts/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>--}}
 <!-- Slimscroll -->
 <script src="{{ asset('layouts/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('layouts/bower_components/ckeditor/ckeditor.js') }}"></script>
@@ -68,20 +70,23 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('layouts/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('layouts/dist/js/pages/dashboard.js') }}"></script>
+{{--<script src="{{ asset('layouts/dist/js/pages/dashboard.js') }}"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('layouts/dist/js/demo.js') }}"></script>
+<script src="{{ asset('layouts/bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{ asset('layouts/bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+
 <script>
-    $(function () {
-        $('#example1').DataTable({
-            'paging'      : false,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : false,
-            'autoWidth'   : false,
-            'info':false
-        })
-    });
+    // $(function () {
+    //     $('#example1').DataTable({
+    //         'paging'      : false,
+    //         'lengthChange': false,
+    //         'searching'   : false,
+    //         'ordering'    : false,
+    //         'autoWidth'   : false,
+    //         'info':false
+    //     })
+    // });
     $(function () {
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
@@ -92,5 +97,6 @@
         autoclose: true
     })
 </script>
+@stack('scripts')
 </body>
 </html>
